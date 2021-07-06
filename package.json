@@ -1,0 +1,30 @@
+{
+  "name": "my-news-backend",
+  "version": "1.0.0",
+  "description": "Link to API: https://newsapi.org/",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "jsonschema": "^1.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.6.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicholasDWinters/capstone-2-my-news-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nicholasDWinters/capstone-2-my-news-backend/issues"
+  },
+  "homepage": "https://github.com/nicholasDWinters/capstone-2-my-news-backend#readme"
+}
