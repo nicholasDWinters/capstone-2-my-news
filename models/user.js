@@ -71,7 +71,7 @@ class User {
     /** Given a username, return data about user.
      *
      * Returns { username, articles }
-     *   where articles is { id, source, date, author, title, description, url, imageUrl, content }
+     *   where articles is { id, source, date, author, title, description, url, image_url, content }
      *
      * Throws NotFoundError if user not found.
      **/
@@ -89,7 +89,7 @@ class User {
         if (!user) throw new NotFoundError(`No user: ${username}`);
 
         const userArticles = await db.query(
-            `SELECT a.id, a.source, a.date, a.author, a.title, a.description, a.url, a.imageUrl, a.content
+            `SELECT a.id, a.source, a.date, a.author, a.title, a.description, a.url, a.image_url, a.content
            FROM articles AS a
            WHERE a.username = $1`, [username]);
 

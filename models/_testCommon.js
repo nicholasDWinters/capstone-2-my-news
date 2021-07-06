@@ -21,10 +21,10 @@ async function commonBeforeAll() {
         ]);
 
     await db.query(`
-    INSERT INTO articles(id, username, source, date, author, title, description, url, imageUrl, content)
-    VALUES (1, 'u1', 'bbc', '7/1/21', 'Nick', 'article 1', 'desc 1', 'blah.com', 'iblah.com', 'content 1'),
-    (2, 'u1', 'bbc', '7/2/21', 'Nick2', 'article 2', 'desc 2', 'blah2.com', 'iblah2.com', 'content 2'),
-    (3, 'u2', 'bbc', '7/3/21', 'Nick3', 'article 3', 'desc 3', 'blah3.com', 'iblah3.com', 'content 3')`);
+    INSERT INTO articles(username, source, date, author, title, description, url, image_url, content)
+    VALUES ('u1', 'bbc', '7/1/21', 'Nick', 'article 1', 'desc 1', 'blah.com', 'iblah.com', 'content 1'),
+    ('u1', 'bbc', '7/2/21', 'Nick2', 'article 2', 'desc 2', 'blah2.com', 'iblah2.com', 'content 2'),
+    ('u2', 'bbc', '7/3/21', 'Nick3', 'article 3', 'desc 3', 'blah3.com', 'iblah3.com', 'content 3')`);
 
 }
 

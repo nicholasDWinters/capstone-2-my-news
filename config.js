@@ -6,8 +6,8 @@ const PORT = +process.env.PORT || 3001;
 
 function getDatabaseUri() {
     return (process.env.NODE_ENV === "test")
-        ? "my-news-test"
-        : process.env.DATABASE_URL || "my-news";
+        ? "my_news_test"
+        : process.env.DATABASE_URL || "my_news";
 }
 
 const BCRYPT_WORK_FACTOR = process.env.NODE_ENV === "test" ? 1 : 12;

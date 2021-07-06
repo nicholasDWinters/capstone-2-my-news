@@ -14,6 +14,6 @@ CREATE TABLE articles (
     title VARCHAR(250) NOT NULL,
     description TEXT NOT NULL,
     url TEXT NOT NULL,
-    imageUrl TEXT NOT NULL,
+    image_url TEXT NOT NULL,
     content TEXT NOT NULL
 );
