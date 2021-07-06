@@ -19,4 +19,4 @@
 
 Once I have the backend and database functions all set up, I will begin work on the frontend using React, Redux, and Material UI to create a minimalist design. A loggedIn boolean will be saved in localStorage to keep a user signed in. State will keep track of the user and their 'read list' stories, as well as the list of stories currently displayed on the page.
 
-Users can navigate the site with the Navbar, showing links for top stories and different genres of storyies. They can then click on an individual story to read it's content. Users will be able to add or remove a story from their 'read list' on both the storylist page as well as their 'read list' page.
+Users can navigate the site with the Navbar, showing links for top stories and different genres of stories. They can then click on an individual story to read it's content. Users will be able to add or remove a story from their 'read list' on both the storylist page as well as their 'read list' page.
