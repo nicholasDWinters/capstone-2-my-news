@@ -1,6 +1,7 @@
 const db = require("../db.js");
 const { NotFoundError } = require("../expressError");
 const Article = require("./article");
+const User = require('./user');
 const {
     commonBeforeAll,
     commonBeforeEach,
@@ -71,6 +72,39 @@ describe("save", function () {
                 content: 'content1'
             }
         ]);
+    });
+});
+
+
+// /************************************** get */
+
+describe("get", function () {
+    test("works", async function () {
+        let user = await User.get('u2');
+        let artId = user.articles[0].id;
+        let article = await Article.get(artId);
+        expect(article).toEqual(
+            {
+                author: "Nick3",
+                content: "content 3",
+                date: "7/3/21",
+                description: "desc 3",
+                image_url: "iblah3.com",
+                source: "bbc",
+                title: "article 3",
+                url: "blah3.com",
+
+            }
+        );
+    });
+
+    test("not found if no such article", async function () {
+        try {
+            await Article.get(234123123);
+            fail();
+        } catch (err) {
+            expect(err instanceof NotFoundError).toBeTruthy();
+        }
     });
 });
 

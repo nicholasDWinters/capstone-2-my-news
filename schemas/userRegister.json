@@ -1,0 +1,35 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "examples": [
+        {
+            "username": "Nick",
+            "password": "sdlfkjsdfksf",
+            "email": "blah@gmail.com"
+        }
+    ],
+    "required": [
+        "username",
+        "password",
+        "email"
+    ],
+    "properties": {
+        "username": {
+            "$id": "#/properties/username",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 25
+        },
+        "password": {
+            "$id": "#/properties/password",
+            "type": "string"
+        },
+        "email": {
+            "$id": "#/properties/email",
+            "type": "string",
+            "format": "email"
+        }
+    },
+    "additionalProperties": true
+}

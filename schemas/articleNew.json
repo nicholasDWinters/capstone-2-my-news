@@ -1,0 +1,60 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "title": "The root schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": {},
+    "required": [
+        "username",
+        "source",
+        "date",
+        "author",
+        "title",
+        "description",
+        "url",
+        "image_url",
+        "content"
+    ],
+    "properties": {
+        "username": {
+            "$id": "#/properties/username",
+            "type": "string"
+        },
+        "source": {
+            "$id": "#/properties/source",
+            "type": "string"
+        },
+        "date": {
+            "$id": "#/properties/date",
+            "type": "string"
+        },
+        "author": {
+            "$id": "#/properties/author",
+            "type": "string"
+        },
+        "title": {
+            "$id": "#/properties/title",
+            "type": "string"
+        },
+        "description": {
+            "$id": "#/properties/description",
+            "type": "string"
+        },
+        "url": {
+            "$id": "#/properties/url",
+            "type": "string",
+            "format": "uri-reference"
+        },
+        "image_url": {
+            "$id": "#/properties/image_url",
+            "type": "string",
+            "format": "uri-reference"
+        },
+        "content": {
+            "$id": "#/properties/content",
+            "type": "string"
+        }
+    },
+    "additionalProperties": true
+}

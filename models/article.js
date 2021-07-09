@@ -25,6 +25,20 @@ class Article {
 
         return article;
     }
+    /** get given article from database
+ *
+ * Throws NotFoundError if article not found.
+ **/
+
+    static async get(id) {
+        const article = await db.query(`SELECT source, date, author, title, description, url, image_url, content 
+            FROM articles WHERE id = $1`, [id]);
+        if (!article.rows[0]) throw new NotFoundError('Article not found');
+
+        return article.rows[0];
+    }
+
+
     /** Delete given article from database; returns undefined.
      *
      * Throws NotFoundError if article not found.
