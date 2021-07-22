@@ -37,7 +37,7 @@ router.post("/", ensureLoggedIn, async function (req, res, next) {
 });
 
 /** GET /  =>
- *   { articles: [ user's saved articles] }
+ *   { user: username, email, articles: [] }
  *
  * Authorization required: user logged in
  */
@@ -46,8 +46,8 @@ router.get("/", ensureLoggedIn, async function (req, res, next) {
 
     try {
         const user = await User.get(res.locals.user.username);
-
-        return res.json({ articles: [...user.articles] });
+        console.log(user);
+        return res.json({ user });
     } catch (err) {
         return next(err);
     }
