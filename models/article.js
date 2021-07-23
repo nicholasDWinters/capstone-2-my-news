@@ -45,6 +45,7 @@ class Article {
      **/
 
     static async remove(id) {
+        console.log(id);
         const article = await db.query('SELECT id FROM articles WHERE id = $1', [id]);
         if (!article.rows[0]) throw new NotFoundError('Article not found');
         const result = await db.query(
