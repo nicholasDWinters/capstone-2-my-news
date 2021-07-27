@@ -47,7 +47,7 @@ router.get("/", ensureLoggedIn, async function (req, res, next) {
     try {
         const user = await User.get(res.locals.user.username || localStorage.user);
         console.log(user);
-        return res.json({ user });
+        return res.status(200).json({ user });
     } catch (err) {
         return next(err);
     }
@@ -63,7 +63,7 @@ router.get("/", ensureLoggedIn, async function (req, res, next) {
 router.get("/:id", ensureLoggedIn, async function (req, res, next) {
     try {
         const article = await Article.get(req.params.id);
-        return res.json({ article });
+        return res.status(200).json({ article });
     } catch (err) {
         return next(err);
     }
@@ -78,7 +78,7 @@ router.delete("/:id", ensureLoggedIn, async function (req, res, next) {
     try {
         await Article.remove(req.params.id);
 
-        return res.json({ deleted: req.params.id });
+        return res.status(200).json({ deleted: req.params.id });
     } catch (err) {
         return next(err);
     }
