@@ -6,12 +6,9 @@ const articleRoutes = require('./routes/articles');
 const { authenticateJWT } = require('./middleware/auth');
 
 const app = express();
-let corsOptions = {
-    origin: 'https://hilarious-potato.surge.sh/',
-    optionsSuccessStatus: 200
-}
+app.options('*', cors());
 
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
