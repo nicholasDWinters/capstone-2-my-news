@@ -22,19 +22,24 @@ describe("GET /articles", function () {
 
         const resp = await request(app).get("/articles").set('authorization', `${u2Token}`);
         expect(resp.body).toEqual({
-            articles: [
-                {
-                    "id": expect.any(Number),
-                    "source": "bbc3",
-                    "date": '3/3/2023',
-                    "author": "author 3",
-                    "title": "title 3",
-                    "description": "Desc3",
-                    "url": "bbc3.com",
-                    "image_url": "img3.com",
-                    "content": "content 3 here"
-                }
-            ]
+            "user": {
+                articles: [
+                    {
+                        "id": expect.any(Number),
+                        "source": "bbc3",
+                        "date": '3/3/2023',
+                        "author": "author 3",
+                        "title": "title 3",
+                        "description": "Desc3",
+                        "url": "bbc3.com",
+                        "image_url": "img3.com",
+                        "content": "content 3 here"
+                    }
+                ],
+                "email": "user2@user.com",
+                "username": "u2"
+            }
+
         });
     });
 
@@ -119,7 +124,8 @@ describe("POST /articles", function () {
 describe("GET /articles/:id", function () {
     test("works for logged in user", async function () {
         let user = await request(app).get("/articles").set('authorization', `${u2Token}`);
-        let artId = user.body.articles[0].id;
+
+        let artId = user.body.user.articles[0].id;
         const resp = await request(app)
             .get(`/articles/${artId}`).set('authorization', `${u2Token}`);
         expect(resp.statusCode).toEqual(200);
@@ -140,7 +146,7 @@ describe("GET /articles/:id", function () {
 
     test("doesn't work for non logged in user", async function () {
         let user = await request(app).get("/articles").set('authorization', `${u2Token}`);
-        let artId = user.body.articles[0].id;
+        let artId = user.body.user.articles[0].id;
         const resp = await request(app)
             .get(`/articles/${artId}`);
         expect(resp.statusCode).toEqual(401);
@@ -157,22 +163,22 @@ describe("GET /articles/:id", function () {
 describe("DELETE /articles/:id", function () {
     test("works for logged in user", async function () {
         let user = await request(app).get("/articles").set('authorization', `${u2Token}`);
-        let artId = user.body.articles[0].id;
+        let artId = user.body.user.articles[0].id;
         const resp = await request(app)
             .delete(`/articles/${artId}`).set('authorization', `${u2Token}`);
         expect(resp.statusCode).toEqual(200);
         user = await request(app).get("/articles").set('authorization', `${u2Token}`);
-        expect(user.body.articles.length).toEqual(0);
+        expect(user.body.user.articles.length).toEqual(0);
     });
 
     test("doesn't work with non logged in user", async function () {
         let user = await request(app).get("/articles").set('authorization', `${u2Token}`);
-        let artId = user.body.articles[0].id;
+        let artId = user.body.user.articles[0].id;
         const resp = await request(app)
             .delete(`/articles/${artId}`);
         expect(resp.statusCode).toEqual(401);
         user = await request(app).get("/articles").set('authorization', `${u2Token}`);
-        expect(user.body.articles.length).toEqual(1);
+        expect(user.body.user.articles.length).toEqual(1);
     });
 
     test("doesn't work with invalid id", async function () {
