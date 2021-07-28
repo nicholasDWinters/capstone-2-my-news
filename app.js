@@ -5,22 +5,22 @@ const authRoutes = require('./routes/auth');
 const articleRoutes = require('./routes/articles');
 // const headlinesRoutes = require('./routes/headlines');
 const { authenticateJWT } = require('./middleware/auth');
-
+const API_KEY = require('./secret');
 const app = express();
 
 
 app.use(cors());
-// app.use(function (req, res, next) {
-//     // CORS headers
+app.use(function (req, res, next) {
+    // CORS headers
 
-//     res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
+    res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
 
-//     if (req.method === "OPTIONS") {
-//         return res.status(200).end();
-//     }
+    if (req.method === "OPTIONS") {
+        return res.status(200).end();
+    }
 
-//     return next();
-// })
+    return next();
+})
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
