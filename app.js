@@ -7,7 +7,7 @@ const { authenticateJWT } = require('./middleware/auth');
 
 const app = express();
 
-app.use(cors({ origin: 'https://hilarious-potato.surge.sh/', credentials: true }));
+app.use(cors({ origin: 'https://hilarious-potato.surge.sh', credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
