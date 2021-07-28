@@ -9,18 +9,19 @@ const API_KEY = require('./secret');
 const app = express();
 
 
-app.use(cors({ methods: 'GET,PUT,POST,DELETE,OPTIONS' }));
-// app.use(function (req, res, next) {
-//     // CORS headers
 
-//     res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
+app.use(function (req, res, next) {
+    // CORS headers
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
 
-//     if (req.method === "OPTIONS") {
-//         return res.status(200).end();
-//     }
+    if (req.method === "OPTIONS") {
+        return res.status(200).end();
+    }
 
-//     return next();
-// })
+    return next();
+})
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
