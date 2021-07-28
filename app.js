@@ -3,7 +3,7 @@ const cors = require('cors');
 const { NotFoundError } = require('./expressError');
 const authRoutes = require('./routes/auth');
 const articleRoutes = require('./routes/articles');
-// const headlinesRoutes = require('./routes/headlines');
+const headlinesRoutes = require('./routes/headlines');
 const { authenticateJWT } = require('./middleware/auth');
 const API_KEY = require('./secret');
 const app = express();
@@ -25,7 +25,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(authenticateJWT);
-// app.use('/headlines', headlinesRoutes);
+app.use('/headlines', headlinesRoutes);
 app.use('/auth', authRoutes);
 app.use('/articles', articleRoutes);
 

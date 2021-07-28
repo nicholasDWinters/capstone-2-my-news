@@ -6,9 +6,8 @@ const router = new express.Router();
 const axios = require('axios');
 
 /** GET /  =>
- *   { user: username, email, articles: [] }
+ *   { gets top headlines from our api }
  *
- * Authorization required: user logged in
  */
 
 router.get("/", async function (req, res, next) {
@@ -16,10 +15,11 @@ router.get("/", async function (req, res, next) {
     try {
         // let articles = await newsAPI.v2.topHeadlines({ country: 'us', pageSize: 20 });
         // console.log(articles);
-        let articles = await axios.get(`https://newsapi.org/v2/top-headlines?country=us&pageSize=20`, { headers: { 'X-Api-Key': `${API_KEY}` } });
-        console.log(articles);
-        // console.log(res);
+        let res2 = await axios.get(`https://newsapi.org/v2/top-headlines?country=us&pageSize=20`, { headers: { 'X-Api-Key': `${API_KEY}` } });
+
+        let articles = res2.data.articles;
         // return res.data.articles;
+        // return res.status(200).json({ articles });
         return res.status(200).json({ articles });
     } catch (err) {
         return next(err);
@@ -34,14 +34,21 @@ router.get("/", async function (req, res, next) {
  * Authorization required: user logged in
  */
 
-// router.get("/:id", ensureLoggedIn, async function (req, res, next) {
-//     try {
-//         const article = await Article.get(req.params.id);
-//         return res.status(200).json({ article });
-//     } catch (err) {
-//         return next(err);
-//     }
-// });
+router.get("/:topic", async function (req, res, next) {
+
+    try {
+        // let articles = await newsAPI.v2.topHeadlines({ country: 'us', pageSize: 20 });
+        // console.log(articles);
+        let res2 = await axios.get(`https://newsapi.org/v2/everything?q=${req.params.topic}&pageSize=20&sortBy=relevancy`, { headers: { 'X-Api-Key': `${API_KEY}` } });
+
+        let articles = res2.data.articles;
+        // return res.data.articles;
+        // return res.status(200).json({ articles });
+        return res.status(200).json({ articles });
+    } catch (err) {
+        return next(err);
+    }
+});
 
 
 
