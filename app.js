@@ -5,23 +5,22 @@ const authRoutes = require('./routes/auth');
 const articleRoutes = require('./routes/articles');
 const headlinesRoutes = require('./routes/headlines');
 const { authenticateJWT } = require('./middleware/auth');
-const API_KEY = require('./secret');
 const app = express();
 
 
 
-app.use(function (req, res, next) {
-    // CORS headers
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
+// app.use(function (req, res, next) {
+//     // CORS headers
+//     res.header('Access-Control-Allow-Origin', 'https://agonizing-bag.surge.sh/');
+//     res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
+//     res.header('Access-Control-Allow-Headers', 'authorization,x-api-key');
+//     if (req.method === "OPTIONS") {
+//         res.status(200);
+//         return next();
+//     }
 
-    if (req.method === "OPTIONS") {
-        res.status(200);
-        return next();
-    }
-
-    return next();
-})
+//     return next();
+// })
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

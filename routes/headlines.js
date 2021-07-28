@@ -1,9 +1,7 @@
 const express = require("express");
 const API_KEY = require('../secret');
-const NewsAPI = require("newsapi");
-const newsAPI = new NewsAPI(`${API_KEY}`);
-const router = new express.Router();
 const axios = require('axios');
+const router = new express.Router();
 
 /** GET /  =>
  *   { gets top headlines from our api }
@@ -13,6 +11,13 @@ const axios = require('axios');
 router.get("/", async function (req, res, next) {
 
     try {
+        if (req.method === "OPTIONS") {
+            res.header('Access-Control-Allow-Origin', 'https://agonizing-bag.surge.sh/');
+            res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
+            res.header('Access-Control-Allow-Headers', 'authorization,x-api-key');
+            res.status(200);
+            return next();
+        }
         // let articles = await newsAPI.v2.topHeadlines({ country: 'us', pageSize: 20 });
         // console.log(articles);
         let res2 = await axios.get(`https://newsapi.org/v2/top-headlines?country=us&pageSize=20`, { headers: { 'X-Api-Key': `${API_KEY}` } });
