@@ -9,7 +9,7 @@ const API_KEY = require('./secret');
 const app = express();
 
 
-app.use(cors());
+app.use(cors({ origin: true }));
 // app.use(function (req, res, next) {
 //     // CORS headers
 
