@@ -11,7 +11,7 @@ function getDatabaseUri() {
         : process.env.DATABASE_URL || "my_news";
 }
 
-const API_KEY = process.env.API_KEY || api;
+const API_KEY = process.env.API_KEY;
 // const API_KEY = process.env.API_KEY || api;
 
 const BCRYPT_WORK_FACTOR = process.env.NODE_ENV === "test" ? 1 : 12;
