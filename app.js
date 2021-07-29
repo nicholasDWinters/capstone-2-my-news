@@ -22,7 +22,7 @@ const app = express();
 //     return next();
 // })
 let corsOptions = {
-    origin: ['http://localhost:3001', 'https://agonizing-bag.surge.sh', 'https://nick-my-news-backend.herokuapp.com'],
+    origin: ['http://localhost:3001', 'http://localhost:3000', 'https://agonizing-bag.surge.sh', 'https://nick-my-news-backend.herokuapp.com'],
     credentials: true,
 };
 app.use(cors(corsOptions));
