@@ -1,6 +1,5 @@
 const express = require("express");
-const API_KEY = require('../secret');
-const axios = require('axios');
+const { API_KEY } = require('../config');
 const router = new express.Router();
 const NewsAPI = require('newsapi');
 const newsapi = new NewsAPI(API_KEY, { corsProxyUrl: 'https://thingproxy.freeboard.io/fetch/' });
