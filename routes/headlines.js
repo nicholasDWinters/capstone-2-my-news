@@ -19,6 +19,7 @@ router.get("/", async function (req, res, next) {
         //     res.status(200);
         //     return next();
         // }
+        console.log(API_KEY);
         let data = await newsapi.v2.topHeadlines({ country: 'us', pageSize: 20 });
         console.log(data);
         // let res2 = await axios.get(`https://newsapi.org/v2/top-headlines?country=us&pageSize=20`, { headers: { 'X-Api-Key': `${API_KEY}` } });
