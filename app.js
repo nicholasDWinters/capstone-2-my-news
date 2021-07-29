@@ -21,11 +21,12 @@ const app = express();
 
 //     return next();
 // })
-let corsOptions = {
-    origin: ['http://localhost:3001', 'http://localhost:3000', 'https://nick-my-news-frontend.herokuapp.com', 'https://nick-my-news-backend.herokuapp.com'],
-    credentials: true,
-};
-app.use(cors(corsOptions));
+// let corsOptions = {
+//     origin: ['http://localhost:3001', 'http://localhost:3000', 'https://nick-my-news-frontend.herokuapp.com', 'https://nick-my-news-backend.herokuapp.com'],
+//     credentials: true,
+// };
+// app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
