@@ -1,5 +1,5 @@
 require("dotenv").config();
-const api = require('./secret');
+// const api = require('./secret');
 
 const SECRET_KEY = process.env.SECRET_KEY || "secret-dev";
 
@@ -12,6 +12,7 @@ function getDatabaseUri() {
 }
 
 const API_KEY = process.env.API_KEY || api;
+// const API_KEY = process.env.API_KEY || api;
 
 const BCRYPT_WORK_FACTOR = process.env.NODE_ENV === "test" ? 1 : 12;
 
