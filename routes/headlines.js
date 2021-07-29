@@ -3,7 +3,7 @@ const API_KEY = require('../secret');
 const axios = require('axios');
 const router = new express.Router();
 const NewsAPI = require('newsapi');
-const newsapi = new NewsAPI(API_KEY, { corsProxyUrl: 'https://thingproxy.freeboard.io' });
+const newsapi = new NewsAPI(API_KEY, { corsProxyUrl: 'https://thingproxy.freeboard.io/fetch/' });
 
 /** GET /  =>
  *   { gets top headlines from our api }
@@ -20,15 +20,15 @@ router.get("/", async function (req, res, next) {
         //     res.status(200);
         //     return next();
         // }
-        let res2 = await newsapi.v2.topHeadlines({ country: 'us', pageSize: 20 });
-        console.log(res2);
+        let data = await newsapi.v2.topHeadlines({ country: 'us', pageSize: 20 });
+        console.log(data);
         // let res2 = await axios.get(`https://newsapi.org/v2/top-headlines?country=us&pageSize=20`, { headers: { 'X-Api-Key': `${API_KEY}` } });
 
         // let articles = res2.data;
 
         // return res.data.articles;
         // return res.status(200).json({ articles });
-        return res.status(200).json({ res2 });
+        return res.status(200).json({ data });
     } catch (err) {
         return next(err);
     }
@@ -48,13 +48,15 @@ router.get("/:topic", async function (req, res, next) {
         // let articles = await newsAPI.v2.topHeadlines({ country: 'us', pageSize: 20 });
         // console.log(articles);
 
-        let res2 = await axios.get(`https://newsapi.org/v2/everything?q=${req.params.topic}&pageSize=20&sortBy=relevancy`, { headers: { 'X-Api-Key': `${API_KEY}` } });
+        // let res2 = await axios.get(`https://newsapi.org/v2/everything?q=${req.params.topic}&pageSize=20&sortBy=relevancy`, { headers: { 'X-Api-Key': `${API_KEY}` } });
 
-        let articles = res2.data;
+        // let articles = res2.data;
+        let data = await newsapi.v2.everything({ q: `${req.params.topic}`, pageSize: 20, sortBy: 'relevancy' });
 
+        console.log(data);
         // return res.data.articles;
         // return res.status(200).json({ articles });
-        return res.status(200).json({ articles });
+        return res.status(200).json({ data });
     } catch (err) {
         return next(err);
     }
